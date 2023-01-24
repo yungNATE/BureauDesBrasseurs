@@ -7,10 +7,13 @@
  * @package BureauDesBrasseurs
  */
 
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
 }
+
+/* ADD ACTION */
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -138,17 +141,37 @@ add_action( 'widgets_init', 'bureaudesbrasseurs_widgets_init' );
  * Enqueue scripts and styles.
  */
 function bureaudesbrasseurs_scripts() {
+	$cssFolder = get_template_directory_uri()."/css";
+	
 	wp_enqueue_style( 'bureaudesbrasseurs-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'bureaudesbrasseurs-style', 'rtl', 'replace' );
+	
+	wp_enqueue_style( 'bureaudesbrasseurs-style', $cssFolder.'/global.css', array(), _S_VERSION );
+	is_home() ?
+		wp_enqueue_style( 'bureaudesbrasseurs-home', $cssFolder.'/home.css', array(), _S_VERSION ) : 		/*  accueil 	*/
+		wp_enqueue_style( 'bureaudesbrasseurs-home', $cssFolder.'/otherpages.css', array(), _S_VERSION );	/* autre pages 	*/
+	
 
-	wp_enqueue_script( 'bureaudesbrasseurs-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'bureaudesbrasseurs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	$jsFolder = get_template_directory_uri()."/js";
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	wp_enqueue_script( 'bureaudesbrasseurs-main', $jsFolder.'/main.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'bureaudesbrasseurs-navigation', $jsFolder.'/navigation.js', array(), _S_VERSION, true );
+
+	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	// 	wp_enqueue_script( 'comment-reply' );
+	// }
 }
 add_action( 'wp_enqueue_scripts', 'bureaudesbrasseurs_scripts' );
+
+
+/* REMOVE ACTION */
+/** 
+* Delete WP SVG located in header
+*/
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+
+
+/* REQUIRE */
 
 /**
  * Implement the Custom Header feature.
@@ -169,6 +192,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Main custom PHP file containing miscellaneous functions.
+ */
+require get_template_directory() . '/inc/main.php';
 
 /**
  * Load Jetpack compatibility file.
