@@ -11,12 +11,11 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<?= esc_html__( 'Le site du Bureau Des Brasseurs !', 'bureaudesbrasseurs' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+<footer id="colophon" class="site-footer">
+	<div class="site-info">
+		<?= esc_html__( 'Le site du Bureau Des Brasseurs !', 'bureaudesbrasseurs' ); ?>
+	</div>
+</footer>
 
 <?php wp_footer(); ?>
 

@@ -141,18 +141,16 @@ add_action( 'widgets_init', 'bureaudesbrasseurs_widgets_init' );
  * Enqueue scripts and styles.
  */
 function bureaudesbrasseurs_scripts() {
+	// wp_enqueue_style( 'bureaudesbrasseurs-style', get_stylesheet_uri(), array(), _S_VERSION );
+	// wp_style_add_data( 'bureaudesbrasseurs-style', 'rtl', 'replace' );
+	
 	$cssFolder = get_template_directory_uri()."/css/compiledCSS";
 	
-	
-	wp_enqueue_style( 'bureaudesbrasseurs-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'bureaudesbrasseurs-style', 'rtl', 'replace' );
-	
-	print_r($cssFolder.'/global.css');
-	
-	wp_enqueue_style( 'bureaudesbrasseurs-styleGlobal', $cssFolder.'/global.css', array(), _S_VERSION );
-	is_home() ?
-		wp_enqueue_style( 'bureaudesbrasseurs-styleHome', $cssFolder.'/home.css', array(), _S_VERSION ) : 		/*  accueil 	*/
-		wp_enqueue_style( 'bureaudesbrasseurs-styleOtherPages', $cssFolder.'/otherpages.css', array(), _S_VERSION );	/* autre pages 	*/
+	wp_enqueue_style( 'bureaudesbrasseurs-styleNormalize', $cssFolder.'/normalize.css' );
+	wp_enqueue_style( 'bureaudesbrasseurs-styleGlobal', $cssFolder.'/global.css' );
+	is_front_page() ?
+		wp_enqueue_style( 'bureaudesbrasseurs-styleHome', $cssFolder.'/frontpage.css' ) : 			/*  accueil 	*/
+		wp_enqueue_style( 'bureaudesbrasseurs-styleOtherPages', $cssFolder.'/otherpages.css' );	/* autre pages 	*/
 	
 
 	$jsFolder = get_template_directory_uri()."/js";
@@ -169,7 +167,7 @@ add_action( 'wp_enqueue_scripts', 'bureaudesbrasseurs_scripts' );
 
 /* REMOVE ACTION */
 /** 
-* Delete WP SVG located in header
+* Delete WP SVG located inside header
 */
 remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 
