@@ -69,6 +69,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
  html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
+	font-size: 62.5%; /* Rééquilibrage du Rem face au Pixel pour des calculs simples */
 }
 
 /* Sections
@@ -207,7 +208,7 @@ input,
 optgroup,
 select,
 textarea {
-	font-family: inherit;
+	// font-family: inherit;
 	font-size: 100%;
 	line-height: 1.15;
 	margin: 0;
@@ -403,8 +404,8 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: 1rem;
+	// font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 1.6rem;
 	line-height: 1.5;
 }
 
@@ -415,6 +416,8 @@ h4,
 h5,
 h6 {
 	clear: both;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 p {
@@ -653,10 +656,12 @@ textarea {
 }
 
 .main-navigation ul {
-	display: none;
+	opacity: 0;
+	pointer-events: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	transition: opacity 0s;
 }
 
 .main-navigation ul ul {
@@ -701,6 +706,9 @@ textarea {
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
+	opacity: 1;
+	pointer-events: all;
+	transition: opacity .3s .3s;
 }
 
 

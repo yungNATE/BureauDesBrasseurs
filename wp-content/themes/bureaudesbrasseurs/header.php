@@ -25,7 +25,9 @@
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bureaudesbrasseurs' ); ?></a>
 
 <header id="masthead" class="site-header">
-	<!-- A SUPPRIMER !!! -->
+	
+	<?php 
+	/* A SUPPRIMER !!!
 	<div style="display: none" class="site-branding">
 		<?php
 		the_custom_logo();
@@ -44,9 +46,14 @@
 			<p class="site-description"><?php echo $bureaudesbrasseurs_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 		<?php endif; ?>
 	</div>
-
+	*/
+	?>
+		
 	<nav id="site-navigation" class="main-navigation">
-		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'bureaudesbrasseurs' ); ?></button>
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
+		</button>
+
 		<?php
 		wp_nav_menu(
 			array(
@@ -56,4 +63,5 @@
 		);
 		?>
 	</nav>
+	
 </header>

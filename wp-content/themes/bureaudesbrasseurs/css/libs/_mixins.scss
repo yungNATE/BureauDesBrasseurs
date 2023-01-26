@@ -1,0 +1,26 @@
+@function v($propertyName: "", $argsFallbacks...) { 
+    // permet de passer de la syntaxe "var(--propriete-custom, propriete-fallback);" 
+    // à "v(propriete-custom, propriete-fallback);"
+    $fallbacksNb: length($argsFallbacks);
+
+    @if $fallbacksNb == 0 {
+        @return var(--#{$propertyName});
+    }
+    $fallbacks: nth($argsFallbacks, $fallbacksNb);
+    @if $fallbacksNb > 1 {
+        @for $index from $fallbacksNb - 1 through 1 {
+        $fallbacks: var(--#{nth($argsFallbacks, $index)}, #{$fallbacks});
+        }
+    }
+    @return var(--#{$propertyName}, $fallbacks);
+}
+
+@mixin font-face($name, $src, $format, $weight: null, $style: null) {
+    @font-face {
+          font-family: quote($name);
+          font-style: $style;
+          font-weight: $weight;
+          src: url($src) format(quote($format));
+      }
+  }
+  
