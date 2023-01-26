@@ -37,12 +37,20 @@ h1{
 
 nav{
     font-family: v(font2);
-    position: fixed;
-    top: 0;
     background-color: transparent;
     backdrop-filter: blur(50px);
+
+    @include custom-flexbox(row wrap, space-between, center, center);
     padding: 30px 90px;
 
+    position: fixed;
+    top: 0;
+
+
+    $menu-toggle-icon-strokeHeight : 2px;
+    $menu-toggle-icon-width : 15px;
+    $menu-toggle-icon-gap : 2px;
+    $menu-toggle-icon-Ycorrection : 2px;
     .menu-toggle{
         font-family: v(font2);
         border: none;
@@ -50,10 +58,38 @@ nav{
         color: white;
         font-weight: bold;
         padding: 0;
+        position: relative;
+        
+
+        &::before,
+        &::after{
+            content: "";
+            display: block;
+            
+            height: $menu-toggle-icon-strokeHeight;
+            background-color: white;
+            position: absolute;
+            right: calc(100% + 5px);
+
+            transition: all .3s;
+        }
+        
+        
+        &::before{
+            bottom: #{$menu-toggle-icon-Ycorrection + $menu-toggle-icon-strokeHeight + $menu-toggle-icon-gap};
+            width: $menu-toggle-icon-width * 0.75;
+            margin-right: $menu-toggle-icon-width * 0.25; // sinon le trait se cale sur la droite et pas sur la gauche
+        }
+        
+        &::after{
+            bottom: #{$menu-toggle-icon-Ycorrection};
+            width: $menu-toggle-icon-width;
+        }
     }
 
     .menu-menu-1-container{
         position: absolute;
+        pointer-events: none;
         
         &::before{
             content: "";
@@ -73,6 +109,7 @@ nav{
             pointer-events: none;
 
             background-color: v(primaryColorDarker);
+            opacity: 0.95;
 
             transition: transform .3s;
 
@@ -82,7 +119,7 @@ nav{
             padding-top: 50px;
             margin-left: 30px;
             margin-right: -30px;
-            
+
             a{
                 font-weight: bold;
                 color: white;
@@ -90,7 +127,23 @@ nav{
         }
 
     }
-    &.toggled .menu-menu-1-container::before{
-        transform: translateX(-50%) scale(1);
-    }
+
+    &.toggled{
+        .menu-menu-1-container::before{
+            transform: translateX(-50%) scale(1);
+        }
+        .menu-toggle{
+            &::before{
+                margin-right: 0;
+                transform: rotate(45deg) translateY(-50%);
+                width: $menu-toggle-icon-width;
+                bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+            }
+            &::after{
+                transform: rotate(-45deg) translateY(-50%);
+                bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+            }
+        }
+
+    } 
 }

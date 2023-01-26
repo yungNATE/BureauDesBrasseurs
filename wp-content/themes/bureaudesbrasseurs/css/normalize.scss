@@ -703,6 +703,9 @@ textarea {
 }
 
 /* Small menu. */
+.menu-toggle{
+	cursor: pointer;
+}
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;

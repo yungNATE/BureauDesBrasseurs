@@ -54,6 +54,10 @@
 			<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
 		</button>
 
+		<?php 
+			// TODO : ajouter le logo de ticket et le cadena private room  
+		?>
+
 		<?php
 		wp_nav_menu(
 			array(
