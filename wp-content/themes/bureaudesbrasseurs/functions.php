@@ -206,3 +206,43 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/* UTILITARY FUNCTIONS */
+function ddd($variable='Debug'){
+	echo '<pre>';
+	( 	
+		$variable === false || 
+		$variable === NULL  || 
+		$variable === "" 	|| 
+		empty($variable) 	
+	) ? 
+		var_dump($variable) : print_r($variable);
+	echo '</pre>';
+}
+
+/* CUSTOM FUNCTIONS */
+
+function bureaudesbrasseurs_get_incoming_events_number() {
+	// généré par copilot, à relire/tester
+	$today = date('Ymd');
+	$args = array(
+		'post_type' => 'event',
+		'posts_per_page' => -1,
+		'meta_key' => 'event_date',
+		'orderby' => 'meta_value_num',
+		'order' => 'ASC',
+		'meta_query' => array(
+			array(
+				'key' => 'event_date',
+				'compare' => '>=',
+				'value' => $today,
+				'type' => 'numeric'
+			)
+		)
+	);
+	$events = new WP_Query($args);
+	return 1;
+	return $events->found_posts;
+	
+}
+
+

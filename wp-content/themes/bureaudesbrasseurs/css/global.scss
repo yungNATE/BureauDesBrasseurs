@@ -35,10 +35,10 @@ h1{
     color: v(secondaryColor);
 }
 
-nav{
+nav.main-navigation{
     font-family: v(font2);
     background-color: transparent;
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(25px);
 
     @include custom-flexbox(row wrap, space-between, center, center);
     padding: 30px 90px;
@@ -47,103 +47,156 @@ nav{
     top: 0;
 
 
+    // menu des pages
     $menu-toggle-icon-strokeHeight : 2px;
     $menu-toggle-icon-width : 15px;
     $menu-toggle-icon-gap : 2px;
-    $menu-toggle-icon-Ycorrection : 2px;
-    .menu-toggle{
-        font-family: v(font2);
-        border: none;
-        background: transparent;
-        color: white;
-        font-weight: bold;
-        padding: 0;
-        position: relative;
-        
-
-        &::before,
-        &::after{
-            content: "";
-            display: block;
-            
-            height: $menu-toggle-icon-strokeHeight;
-            background-color: white;
-            position: absolute;
-            right: calc(100% + 5px);
-
-            transition: all .3s;
-        }
-        
-        
-        &::before{
-            bottom: #{$menu-toggle-icon-Ycorrection + $menu-toggle-icon-strokeHeight + $menu-toggle-icon-gap};
-            width: $menu-toggle-icon-width * 0.75;
-            margin-right: $menu-toggle-icon-width * 0.25; // sinon le trait se cale sur la droite et pas sur la gauche
-        }
-        
-        &::after{
-            bottom: #{$menu-toggle-icon-Ycorrection};
-            width: $menu-toggle-icon-width;
-        }
-    }
-
-    .menu-menu-1-container{
-        position: absolute;
-        pointer-events: none;
-        
-        &::before{
-            content: "";
-            position: absolute;
-            display: block;
-            bottom: -100px;
-            left: -50%;
-            transform: translateX(-50%) scale(0);
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            
-            width: 1000px;
-            height: 1000px;
-            border-radius: 100%;
-
-            pointer-events: none;
-
-            background-color: v(primaryColorDarker);
-            opacity: 0.95;
-
-            transition: transform .3s;
-
-        }
-        
-        #primary-menu{
-            padding-top: 50px;
-            margin-left: 30px;
-            margin-right: -30px;
-
-            a{
-                font-weight: bold;
-                color: white;
-            }
-        }
-
-    }
-
-    &.toggled{
-        .menu-menu-1-container::before{
-            transform: translateX(-50%) scale(1);
-        }
+    $menu-toggle-icon-Ycorrection : 4px;
+    .left{
         .menu-toggle{
-            &::before{
-                margin-right: 0;
-                transform: rotate(45deg) translateY(-50%);
-                width: $menu-toggle-icon-width;
-                bottom: calc(50% - $menu-toggle-icon-Ycorrection);
-            }
+            font-family: v(font2);
+            border: none;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            padding: 0;
+            position: relative;
+            
+    
+            &::before,
             &::after{
-                transform: rotate(-45deg) translateY(-50%);
-                bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+                content: "";
+                display: block;
+                
+                height: $menu-toggle-icon-strokeHeight;
+                background-color: white;
+                position: absolute;
+                right: calc(100% + 5px);
+    
+                transition: all .3s;
+            }
+            
+            
+            &::before{
+                bottom: #{$menu-toggle-icon-Ycorrection + $menu-toggle-icon-strokeHeight + $menu-toggle-icon-gap};
+                width: $menu-toggle-icon-width * 0.75;
+                margin-right: $menu-toggle-icon-width * 0.25; // sinon le trait se cale sur la droite et pas sur la gauche
+            }
+            
+            &::after{
+                bottom: #{$menu-toggle-icon-Ycorrection};
+                width: $menu-toggle-icon-width;
             }
         }
-
+    
+        .menu-menu-1-container{
+            position: absolute;
+            pointer-events: none;
+            
+            &::before{
+                content: "";
+                position: absolute;
+                display: block;
+                bottom: -100px;
+                left: -50%;
+                transform: translateX(-50%) scale(0);
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                
+                width: 1000px;
+                height: 1000px;
+                border-radius: 100%;
+    
+                pointer-events: none;
+    
+                background-color: v(primaryColorDarker);
+                opacity: 0.95;
+    
+                transition: transform .3s;
+    
+            }
+            
+            #primary-menu{
+                padding-top: 50px;
+                margin-left: 30px;
+                margin-right: -30px;
+    
+                a{
+                    font-weight: bold;
+                    color: white;
+                }
+            }
+    
+        }
+    
+    }
+    &.toggled{
+        .left{
+            .menu-menu-1-container::before{
+                transform: translateX(-50%) scale(1);
+            }
+            .menu-toggle{
+                &::before{
+                    margin-right: 0;
+                    transform: rotate(45deg) translateY(-50%);
+                    width: $menu-toggle-icon-width;
+                    bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+                }
+                &::after{
+                    transform: rotate(-45deg) translateY(-50%);
+                    bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+                }
+            }
+        }
     } 
+
+    // liens diverses
+    .right{
+        @include custom-flexbox(row nowrap, center, center, center);
+
+        .nav-link{
+            position: relative;
+
+            &:not(:last-child){
+                margin-right: 15px;
+            }
+            &-icon{
+                height: 30px;
+            }
+            &.has-notification{
+                animation: notificationBounce 2s;
+
+                &::after{
+                    content: attr(data-nbrevents);
+                    font-family: v(font2);
+                    font-weight: bold;
+                    position: absolute;
+                    left: -4px;
+                    top: -4px;
+    
+                    background-color: v(primaryColor);
+                    color: v(secondaryColor);
+                    
+                    $fontSize: 14; //px
+                    width: #{$fontSize * 1.5}px; // sinon le numéro est rectangulaire (car inline). Ici, on peut juste changer la font-size et obtenir un résultat carré sans fixer de width en dur
+                    font-size: #{$fontSize / 10}rem;
+                    border-radius: 50%;
+    
+                    text-align: center;
+                    
+                }
+            }
+        }
+    }
+}
+
+@keyframes notificationBounce{
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-14px); }
+    50%  { transform: scale(1.05,.95) translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-7px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
 }

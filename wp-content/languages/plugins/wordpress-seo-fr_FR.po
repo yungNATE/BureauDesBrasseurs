@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-24 08:45:49+0000\n"
+"PO-Revision-Date: 2023-01-25 17:23:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -258,13 +258,13 @@ msgstr "Nous devons analyser une partie de vos données SEO à nouveau suite à 
 #. page, 2: Link closing tag.
 #: src/integrations/watchers/indexable-taxonomy-change-watcher.php:169
 msgid "It looks like you've added a new taxonomy to your website. We recommend that you review your %1$sSettings%2$s under Categories & tags."
-msgstr "Il semblerait que vous ayez ajouté une nouvelle taxonomie sur votre site. Nous vous recommandons de vérifier vos %1$sréglages%2$s dans les catégories & étiquettes."
+msgstr "Il semblerait que vous ayez ajouté une nouvelle taxonomie sur votre site. Nous vous recommandons de vérifier vos %1$sréglages SEO%2$s."
 
 #. translators: 1: Opening tag of the link to the Search appearance settings
 #. page, 2: Link closing tag.
 #: src/integrations/watchers/indexable-post-type-change-watcher.php:167
 msgid "It looks like you've added a new type of content to your website. We recommend that you review your %1$sSettings%2$s under Content types."
-msgstr "Il semblerait que vous ayez ajouté un nouveau type de publication sur votre site. Nous vous recommandons de vérifier vos %1$sréglages%2$s dans les types de publication."
+msgstr "Il semblerait que vous ayez ajouté un nouveau type de publication sur votre site. Nous vous recommandons de vérifier vos %1$sréglages SEO%2$s."
 
 #. translators: %s: expands to the term id
 #: src/exceptions/indexable/term-not-built-exception.php:20
@@ -671,7 +671,7 @@ msgstr "%1$sEn savoir plus sur les réglages d’exploration et comment ils peuv
 #. translators: %1$s expands to Yoast SEO
 #: admin/views/tabs/dashboard/crawl-settings.php:22
 msgid "To make the crawling of your site more efficient and environmental friendly, %1$s allows you to remove URLs (added by WordPress) that might not be needed for your site."
-msgstr "Pour rendre l’exploration de vitre site plus efficace et écologiquement sobre, %1$s vous permet de retirer les URL (ajoutées par WordPress) qui ne seraient pas utiles à votre site."
+msgstr "Pour rendre l’exploration de vitre site plus efficace et écologiquement sobre, %1$s vous permet de retirer les flux RSS (ajoutés par WordPress) qui ne serait pas utile à votre site."
 
 #: admin/views/redirects.php:188
 msgid "No items found."
@@ -826,7 +826,7 @@ msgstr "Utilisez WordPress pour horodater cette page, vous mettre en conformité
 
 #: vendor_prefixed/wordproof/wordpress-sdk/app/Controllers/PostEditorTimestampController.php:142
 msgid "Timestamp this post"
-msgstr "Horodater cette publication"
+msgstr "Horodater cet(te) %s"
 
 #: src/integrations/admin/import-integration.php:234
 msgid "Cleanup failed with the following error:"
@@ -894,7 +894,7 @@ msgstr "Sélectionnez une extension SEO"
 
 #: src/integrations/admin/import-integration.php:94
 msgid "The import can take a long time depending on your site's size."
-msgstr "L’importation peut prendre un certain temps en fonction de la taille de votre site."
+msgstr "L’importation peut prendre un certain temps en fonction de la taille de votre site"
 
 #: src/integrations/admin/installation-success-integration.php:104
 msgid "Installation Successful"
@@ -970,7 +970,7 @@ msgstr "Renouvelez votre abonnement à %s"
 #. SEO, 3: Link closing tag.
 #: src/integrations/admin/first-time-configuration-notice-integration.php:142
 msgid "Get started quickly with the %1$s%2$s First-time configuration%3$s and configure Yoast SEO with the optimal SEO settings for your site!"
-msgstr "Démarrez rapidement avec %1$sla première configuration de %2$s%3$s afin de configurer les réglages optimaux pour votre site !"
+msgstr "Démarrez rapidement avec %1$sl’entraînement de configuration de %2$s%3$s afin de configurer les réglages optimaux pour votre site !"
 
 #: inc/class-wpseo-replace-vars.php:1498
 msgid "Current or first category title"
@@ -1861,7 +1861,7 @@ msgstr "Schema"
 
 #: admin/views/tabs/social/twitterbox.php:21
 msgid "Twitter uses Open Graph metadata just like Facebook, so be sure to keep the \"Add Open Graph metadata\" setting on the Facebook tab enabled if you want to optimize your site for Twitter."
-msgstr "Twitter, utilise les métadonnées Open Graph tout comme Facebook. Assurez-vous donc d’avoir activé le réglage « Ajouter les métadonnées Open Graph » dans l’onglet Facebook si vous souhaitez optimiser votre site pour Twitter."
+msgstr "Twitter, tout comme Facebook, utilise les métadonnées Open Graph. Assurez-vous donc d’avoir activé le réglage « Ajouter les métadonnées Open Graph » dans l’onglet Facebook si vous souhaitez optimiser votre site pour Twitter."
 
 #: admin/admin-settings-changed-listener.php:81
 msgid "Settings saved."
@@ -1870,7 +1870,7 @@ msgstr "Réglages enregistrés."
 #. translators: %s: additional message with the submitted invalid value
 #: admin/class-yoast-input-validation.php:167
 msgid "Please check the format of the YouTube URL you entered. %s"
-msgstr "Veuillez vérifier le format de l’URL YouTube saisie. %s"
+msgstr "Veuillez vérifier le format de l’URL Youtube saisie. %s"
 
 #. translators: %s: additional message with the submitted invalid value
 #: admin/class-yoast-input-validation.php:157
@@ -2365,7 +2365,7 @@ msgstr "Tous les champs nécessaires ne sont pas renseignés. Champ manquant %1$
 #: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:15
 #: js/dist/new-settings.js:34
 msgid "You can edit the SEO metadata for this custom type on the %1$sShop page%2$s."
-msgstr "Vous pouvez modifier les métadonnées SEO de ce type de publication sur la %1$spage Boutique%2$s."
+msgstr "Vous pouvez éditer les métadonnées SEO de cette page dans les réglages de la %1$spage Boutique%2$s."
 
 #: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:10
 msgid "You haven't set a Shop page in your WooCommerce settings. Please do this first."
@@ -3066,7 +3066,7 @@ msgstr "Plus d’informations au sujet de %1$s"
 
 #: src/integrations/admin/old-configuration-integration.php:38
 msgid "Old Configuration Wizard"
-msgstr "Ancien assistant de configuration"
+msgstr "Assistant de configuration"
 
 #. translators: %s expands to the extension title
 #: admin/views/licenses.php:195 admin/views/licenses.php:305
@@ -3656,7 +3656,7 @@ msgstr "Tentative de construction d’une clé de cache sécurisée pour le plan
 #: admin/views/redirects.php:32
 #: src/integrations/admin/redirects-page-integration.php:48
 msgid "Redirects"
-msgstr "Redirections"
+msgstr "Redirection"
 
 #: admin/views/tabs/metas/taxonomies/category-url.php:10
 #: src/integrations/admin/crawl-settings-integration.php:279
@@ -4028,7 +4028,7 @@ msgstr "Page %1$d sur %2$d"
 
 #: inc/class-wpseo-replace-vars.php:122
 msgid "You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the \"wpseo_replacements\" filter instead to adjust the replacement value."
-msgstr "Vous ne pouvez pas annuler une variable de remplacement standard de WPSEO en enregistrant une variable avec le même nom. Utilisez le  filtre \"wpseo_replacements\"  au lieu d’ajuster la valeur de remplacement."
+msgstr "Vous ne pouvez pas annuler une variable de remplacement standard de WPSEO en enregistrant une variable avec le même nom. Utilisez le filtre « wpseo_replacements » au lieu d’ajuster la valeur de remplacement."
 
 #: inc/class-wpseo-replace-vars.php:118
 msgid "A replacement variable with the same name has already been registered. Try making your variable name unique."
@@ -4488,7 +4488,7 @@ msgstr "RSS"
 
 #: inc/class-wpseo-replace-vars.php:1496
 msgid "Permalink"
-msgstr "Permalien"
+msgstr "Permaliens"
 
 #: admin/pages/metas.php:23 js/dist/new-settings.js:10
 #: js/dist/new-settings.js:12 js/dist/new-settings.js:106
@@ -4513,7 +4513,7 @@ msgstr "la création de redirection est une fonctionnalité de %s."
 
 #: admin/views/redirects.php:175 admin/views/redirects.php:222
 msgid "New URL"
-msgstr "Nouvelle URL"
+msgstr "Nouvelle URL :"
 
 #: admin/views/redirects.php:112
 msgid "URL"

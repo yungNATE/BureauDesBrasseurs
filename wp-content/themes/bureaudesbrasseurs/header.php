@@ -50,22 +50,45 @@
 	?>
 		
 	<nav id="site-navigation" class="main-navigation">
-		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-			<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
-		</button>
+		<div class="left">
 
-		<?php 
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+				<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
+			</button>
+			<?php 
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						)
+				); 
+			?>
+
+		</div>
+
+		<div class="right">
+			<?php 
+			/* 	Note de Bonne pratique : 	
+				les aria-labels sont à utiliser conjointement aux attributs title pour des raisons d'accessiblité
+				https://stackoverflow.com/questions/27953425/what-is-the-difference-between-aria-label-and-title-attributes
+			*/
+			?>
+			<?php 
+			$numberOfEvents = bureaudesbrasseurs_get_incoming_events_number();
+			if ($numberOfEvents == 0) $numberOfEvents = "";
+			?>
+			<a class="nav-link has-notification" href="/events" data-nbrevents="<?= $numberOfEvents ?>" title="Les évènements du BDB !" aria-label="Les évènements du BDB !" >
+				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/icone-ticket.svg" alt="Icone de ticket">
+			</a>
+			<a class="nav-link" href="/salon-prive" title="Zone réservée aux membres de l'association" aria-label="Zone réservée aux membres de l'association" >
+				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/icone-cadena.svg" alt="Icone de cadena">
+			</a>
+
+			<?php 
 			// TODO : ajouter le logo de ticket et le cadena private room  
-		?>
+			?>
+		</div>
 
-		<?php
-		wp_nav_menu(
-			array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			)
-		);
-		?>
 	</nav>
 	
 </header>
