@@ -46,6 +46,38 @@ nav.main-navigation{
     position: fixed;
     top: 0;
 
+    .nav-link{
+        position: relative;
+
+        &-icon{
+            height: 30px;
+            aspect-ratio: 1/1;
+        }
+        &.has-notification{
+            animation: notificationBounce 2s;
+
+            &::after{
+                content: attr(data-nbrevents);
+                font-family: v(font2);
+                font-weight: bold;
+                position: absolute;
+                left: -4px;
+                top: -4px;
+
+                background-color: v(primaryColor);
+                color: v(secondaryColor);
+                
+                $fontSize: 14; //px
+                width: #{$fontSize * 1.5}px; // sinon le numéro est rectangulaire (car inline). Ici, on peut juste changer la font-size et obtenir un résultat carré sans fixer de width en dur
+                font-size: #{$fontSize / 10}rem;
+                border-radius: 50%;
+
+                text-align: center;
+                
+            }
+        }
+    }
+
 
     // menu des pages
     $menu-toggle-icon-strokeHeight : 2px;
@@ -53,6 +85,12 @@ nav.main-navigation{
     $menu-toggle-icon-gap : 2px;
     $menu-toggle-icon-Ycorrection : 4px;
     .left{
+        @include custom-flexbox(row nowrap, center, center, center);
+
+        #home-link{
+            margin-right: 40px;
+        }
+
         .menu-toggle{
             font-family: v(font2);
             border: none;
@@ -60,6 +98,7 @@ nav.main-navigation{
             color: white;
             font-weight: bold;
             padding: 0;
+            padding-left: 25px;
             position: relative;
             
     
@@ -71,7 +110,7 @@ nav.main-navigation{
                 height: $menu-toggle-icon-strokeHeight;
                 background-color: white;
                 position: absolute;
-                right: calc(100% + 5px);
+                left: 0;
     
                 transition: all .3s;
             }
@@ -131,8 +170,11 @@ nav.main-navigation{
         }
     
     }
-    &.toggled{
-        .left{
+    &.toggled{ 
+        // En soi, c'est "nav" qui est toggled et pas .left, 
+        // mais le toggle ne concerne ici que .left (le menu de liens) 
+        // donc je les mets à coté.
+        .left{            
             .menu-menu-1-container::before{
                 transform: translateX(-50%) scale(1);
             }
@@ -146,6 +188,7 @@ nav.main-navigation{
                 &::after{
                     transform: rotate(-45deg) translateY(-50%);
                     bottom: calc(50% - $menu-toggle-icon-Ycorrection);
+                    left: 1px;
                 }
             }
         }
@@ -155,38 +198,8 @@ nav.main-navigation{
     .right{
         @include custom-flexbox(row nowrap, center, center, center);
 
-        .nav-link{
-            position: relative;
-
-            &:not(:last-child){
-                margin-right: 15px;
-            }
-            &-icon{
-                height: 30px;
-            }
-            &.has-notification{
-                animation: notificationBounce 2s;
-
-                &::after{
-                    content: attr(data-nbrevents);
-                    font-family: v(font2);
-                    font-weight: bold;
-                    position: absolute;
-                    left: -4px;
-                    top: -4px;
-    
-                    background-color: v(primaryColor);
-                    color: v(secondaryColor);
-                    
-                    $fontSize: 14; //px
-                    width: #{$fontSize * 1.5}px; // sinon le numéro est rectangulaire (car inline). Ici, on peut juste changer la font-size et obtenir un résultat carré sans fixer de width en dur
-                    font-size: #{$fontSize / 10}rem;
-                    border-radius: 50%;
-    
-                    text-align: center;
-                    
-                }
-            }
+        .nav-link:not(:last-child){
+            margin-right: 15px;
         }
     }
 }

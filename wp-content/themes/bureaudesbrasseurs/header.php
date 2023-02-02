@@ -51,18 +51,24 @@
 		
 	<nav id="site-navigation" class="main-navigation">
 		<div class="left">
+			<a class="nav-link" id="home-link" href="<?= get_home_url() ?>" title="Accueil" aria-label="Accueil" >
+				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/logo-simplified.svg" alt="Logo du BDB">
+			</a>
 
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-				<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
-			</button>
-			<?php 
+			<div class="menu-links">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
+				</button>
+				
+				<?php 
 				wp_nav_menu(
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
 						)
-				); 
-			?>
+					); 
+				?>
+			</div>
 
 		</div>
 
@@ -77,16 +83,12 @@
 			$numberOfEvents = bureaudesbrasseurs_get_incoming_events_number();
 			if ($numberOfEvents == 0) $numberOfEvents = "";
 			?>
-			<a class="nav-link has-notification" href="/events" data-nbrevents="<?= $numberOfEvents ?>" title="Les évènements du BDB !" aria-label="Les évènements du BDB !" >
+			<a class="nav-link has-notification" href="<?= get_permalink(14) ?>" data-nbrevents="<?= $numberOfEvents ?>" title="Les évènements à venir du BDB !" aria-label="Les évènements à venir du BDB !" >
 				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/icone-ticket.svg" alt="Icone de ticket">
 			</a>
 			<a class="nav-link" href="/salon-prive" title="Zone réservée aux membres de l'association" aria-label="Zone réservée aux membres de l'association" >
 				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/icone-cadena.svg" alt="Icone de cadena">
 			</a>
-
-			<?php 
-			// TODO : ajouter le logo de ticket et le cadena private room  
-			?>
 		</div>
 
 	</nav>
