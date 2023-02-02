@@ -51,15 +51,17 @@
 		
 	<nav id="site-navigation" class="main-navigation">
 		<div class="left">
-			<a class="nav-link" id="home-link" href="<?= get_home_url() ?>" title="Accueil" aria-label="Accueil" >
-				<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/logo-simplified.svg" alt="Logo du BDB">
-			</a>
+			<?php if(! is_front_page()) : ?>
+				<a class="nav-link" id="home-link" href="<?= get_home_url() ?>" title="Accueil" aria-label="Accueil" >
+					<img class="nav-link-icon" src="<?= get_stylesheet_directory_uri() ?>/img/logo-simplified.svg" alt="Logo du BDB">
+				</a>
+			<?php endif; ?>
 
 			<div class="menu-links">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
 				</button>
-				
+
 				<?php 
 				wp_nav_menu(
 					array(
