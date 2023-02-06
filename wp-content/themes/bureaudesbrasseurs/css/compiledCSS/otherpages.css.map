@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"otherpages.css"}
+{"version":3,"sources":["../otherpages.scss","../libs/_mixins.scss"],"names":[],"mappings":"AAOA,QACI,WAAA,CCsCA,YAAA,CAqDQ,uBD1FgB,CC+HxB,sBD/HuC,CCuJvC,kBDvJ+C,CC2I/C,oBD3IuD,CAEvD,+BCmCA,YAAA,CAqDQ,oBDvFoB,CC4H5B,sBD5HwC,CCoJxC,kBDpJgD,CCwIhD,oBDxIwD,CAEpD,kCACI,cAAA,CACA,kBAAA,CACA,SAAA,CACA,eAAA,CAGJ,qCACI,WAAA,CACA,WAAA","file":"otherpages.css"}

@@ -1,0 +1,34 @@
+@import "libs/_mixins.scss";
+
+:root{
+
+}
+
+// Generic
+.banner{
+    height: 30vh;
+    @include custom-flexbox(column nowrap, center, center, center);
+    
+    .wrapper-bannerContent{
+        @include custom-flexbox(row nowrap, center, center, center);
+
+        h1{
+            font-size: 8rem;
+            margin-right: -90px;
+            z-index: 1;
+            margin-top: 50px;
+        }
+
+        .logo{
+            width: 200px;
+            opacity: 55%;
+        }
+    }
+
+}
+
+
+// Page Trombinoscope
+.page-template-template-trombinoscope{
+
+}
