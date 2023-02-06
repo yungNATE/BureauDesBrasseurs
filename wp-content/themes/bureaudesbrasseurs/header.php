@@ -57,7 +57,7 @@
 				</a>
 			<?php endif; ?>
 
-			<div class="menu-links">
+			<div class="menu-links" aria-lable="Ouvrir le menu des pages">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php esc_html_e( 'menu', 'bureaudesbrasseurs' ); ?>
 				</button>
