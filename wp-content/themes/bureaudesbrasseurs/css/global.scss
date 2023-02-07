@@ -23,16 +23,34 @@ $font-folder-path: "../fonts";
 
 
 /* GENERIQUE */
+// HTML Elements
 $nav-height: 100px;
 body{
-    font-family: v(font1);
+    font-family: v(font2);
     color: white;
     background-color: v(primaryColor);
     padding-top: $nav-height;
 }
 
-h1{
+h1, h2{
+    font-family: v(font1);
     color: v(secondaryColor);
+}
+
+// Custom Elements
+section{
+    @include margin-inline(auto);
+    @include padding-inline(50px);
+
+    &.large{
+        max-width: 1920px;
+    }
+    &.medium{
+        max-width: 1400px;
+    }
+    &.small{
+        max-width: 900px;
+    }
 }
 
 nav.main-navigation{
@@ -211,6 +229,53 @@ nav.main-navigation{
     }
 }
 
+.bubbleAndText{
+    @include custom-flexbox(row wrap, center, center, center);
+
+    > * {
+        @include flex(1);
+    }
+
+    .bubbles{
+        .bubble{
+            width: v(bubbleWidth);
+            height: v(bubbleHeight);
+            background-color: red;
+            border: black 1px solid;
+        }
+    }
+
+    .text{
+        margin-top: 50px;
+        font-weight: bold;
+        max-width: 500px;
+        position: relative;
+
+        &::before,
+        &::after{
+            content: "";
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -30%);
+            position: absolute;
+            z-index: -1;
+
+            display: block;
+            width: 100%;
+            aspect-ratio: 1/1;
+
+            background-color: #231C59;
+            border-radius: 50%;
+        }
+
+        &::before{
+            filter: blur(15px);
+        }
+    }
+}
+
+
+// Animations
 @keyframes notificationBounce{
     0%   { transform: scale(1,1)      translateY(0); }
     10%  { transform: scale(1.1,.9)   translateY(0); }

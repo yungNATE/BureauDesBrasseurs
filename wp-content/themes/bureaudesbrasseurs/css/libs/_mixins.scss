@@ -10,7 +10,7 @@
     $fallbacks: nth($argsFallbacks, $fallbacksNb);
     @if $fallbacksNb > 1 {
         @for $index from $fallbacksNb - 1 through 1 {
-        $fallbacks: var(--#{nth($argsFallbacks, $index)}, #{$fallbacks});
+          $fallbacks: var(--#{nth($argsFallbacks, $index)}, #{$fallbacks});
         }
     }
     @return var(--#{$propertyName}, $fallbacks);
@@ -33,143 +33,162 @@
     @include justify-content($justify-content);
     @include align-items($align-items);
     @include align-content($align-content);
+}
+@mixin custom-flexbox-child($order, $flex, $align-self){
+  @include order($order);
+  @include flex($flex);
+  @include align-self($align-self);
+}
+
+@mixin flexbox {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin inline-flex { // Inline flex display
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+@mixin flex($flex : 0 1 auto) { // <positive-number>, initial, auto, or none
+  -webkit-flex: $flex;
+      -ms-flex: $flex;
+          flex: $flex;
+}
+@mixin flex-direction($direction: row) { // row (default) | row-reverse | column | column-reverse
+  @if $direction == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction:    reverse;
+    -moz-box-orient:    horizontal;
+  } @else if $direction == column {
+    -webkit-box-direction:  normal;
+    -webkit-box-orient:   vertical;
+    -moz-box-direction:     normal;
+    -moz-box-orient:      vertical;
+  } @else if $direction == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient:   vertical;
+    -moz-box-direction:    reverse;
+    -moz-box-orient:      vertical;
+  } @else {
+    -webkit-box-direction:  normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction:     normal;
+    -moz-box-orient:    horizontal;
   }
-  @mixin custom-flexbox-child($order, $flex, $align-self){
-    @include order($order);
-    @include flex($flex);
-    @include align-self($align-self);
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction:     $direction;
+    flex-direction:         $direction;
+}
+@mixin flex-wrap($value: nowrap) { // nowrap | wrap | wrap-reverse
+  // No Webkit/FF Box fallback.
+  $msCompatibilityValue: $value;
+  @if $value == nowrap {
+    $msCompatibilityValue: none;
+  }
     
+  -webkit-flex-wrap: $value;
+  -ms-flex-wrap: $msCompatibilityValue;
+  flex-wrap: $value;
+}
+@mixin flex-flow($values: (row nowrap)) { // <flex-direction> || <flex-wrap>
+  // No Webkit/FF Box fallback.
+  -webkit-flex-flow: $values;
+      -ms-flex-flow: $values;
+          flex-flow: $values;
+}
+@mixin order($int: 0) { // <integer>
+    -webkit-order:    $int;
+    -ms-flex-order:   $int;
+              order:  $int;
+}
+@mixin flex-grow($int: 1) { // <number>
+    -webkit-box-flex: $int;
+      -moz-box-flex: $int;
+  -webkit-flex-grow: $int;
+            -ms-flex: $int;
+          flex-grow: $int;
+}
+@mixin flex-shrink($int: 0) { // <number>
+  -webkit-flex-shrink: $int;
+      -moz-flex-shrink: $int;
+              -ms-flex: $int;
+          flex-shrink: $int;
+}
+@mixin flex-basis($value: auto) { // <width> 
+  -webkit-flex-basis: $value;
+          flex-basis: $value;
+}
+@mixin justify-content($value: flex-start) { // flex-start | flex-end | center | space-between | space-around 
+  $msCompatibilityValue: map-get((
+    flex-start  : start,
+    flex-end    : end,
+    space-between  : justify,
+    space-around  : distribute,
+  ), $value);
+  @if $msCompatibilityValue == null{
+    $msCompatibilityValue : $value;
   }
   
-  @mixin flexbox {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
+  -ms-flex-pack: $msCompatibilityValue; 
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+@mixin align-content($value: stretch) { // flex-start | flex-end | center | space-between | space-around | stretch 
+  $msCompatibilityValue: map-get((
+    flex-start  : start,
+    flex-end    : end,
+  ), $value);
+  @if $msCompatibilityValue == null{
+    $msCompatibilityValue : $value;
   }
-  @mixin inline-flex { // Inline flex display
-    display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
+  -webkit-align-content: $value;
+  -ms-flex-line-pack: $msCompatibilityValue;
+  align-content: $value;
+}
+@mixin align-items($value: stretch) { // flex-start | flex-end | center | baseline | stretch 
+  $msCompatibilityValue: map-get((
+    flex-start  : start,
+    flex-end    : end,
+  ), $value);
+  @if $msCompatibilityValue == null{
+    $msCompatibilityValue : $value;
   }
-  @mixin flex($flex : 0 1 auto) { // <positive-number>, initial, auto, or none
-    -webkit-flex: $flex;
-        -ms-flex: $flex;
-            flex: $flex;
+  -webkit-align-items: $value;
+  -ms-flex-align: $msCompatibilityValue;
+  align-items: $value;
+}
+@mixin align-self($value: auto) { // auto | flex-start | flex-end | center | baseline | stretch 
+  $msCompatibilityValue: map-get((
+    flex-start  : start,
+    flex-end    : end,
+  ), $value);
+  @if $msCompatibilityValue == null{
+    $msCompatibilityValue : $value;
   }
-  @mixin flex-direction($direction: row) { // row (default) | row-reverse | column | column-reverse
-    @if $direction == row-reverse {
-      -webkit-box-direction: reverse;
-      -webkit-box-orient: horizontal;
-      -moz-box-direction:    reverse;
-      -moz-box-orient:    horizontal;
-    } @else if $direction == column {
-      -webkit-box-direction:  normal;
-      -webkit-box-orient:   vertical;
-      -moz-box-direction:     normal;
-      -moz-box-orient:      vertical;
-    } @else if $direction == column-reverse {
-      -webkit-box-direction: reverse;
-      -webkit-box-orient:   vertical;
-      -moz-box-direction:    reverse;
-      -moz-box-orient:      vertical;
-    } @else {
-      -webkit-box-direction:  normal;
-      -webkit-box-orient: horizontal;
-      -moz-box-direction:     normal;
-      -moz-box-orient:    horizontal;
-    }
-      -webkit-flex-direction: $direction;
-      -ms-flex-direction:     $direction;
-      flex-direction:         $direction;
-  }
-  @mixin flex-wrap($value: nowrap) { // nowrap | wrap | wrap-reverse
-    // No Webkit/FF Box fallback.
-    $msCompatibilityValue: $value;
-    @if $value == nowrap {
-      $msCompatibilityValue: none;
-    }
-      
-    -webkit-flex-wrap: $value;
-    -ms-flex-wrap: $msCompatibilityValue;
-    flex-wrap: $value;
-  }
-  @mixin flex-flow($values: (row nowrap)) { // <flex-direction> || <flex-wrap>
-    // No Webkit/FF Box fallback.
-    -webkit-flex-flow: $values;
-        -ms-flex-flow: $values;
-            flex-flow: $values;
-  }
-  @mixin order($int: 0) { // <integer>
-      -webkit-order:    $int;
-      -ms-flex-order:   $int;
-                order:  $int;
-  }
-  @mixin flex-grow($int: 1) { // <number>
-     -webkit-box-flex: $int;
-        -moz-box-flex: $int;
-    -webkit-flex-grow: $int;
-             -ms-flex: $int;
-            flex-grow: $int;
-  }
-  @mixin flex-shrink($int: 0) { // <number>
-    -webkit-flex-shrink: $int;
-       -moz-flex-shrink: $int;
-               -ms-flex: $int;
-            flex-shrink: $int;
-  }
-  @mixin flex-basis($value: auto) { // <width> 
-    -webkit-flex-basis: $value;
-            flex-basis: $value;
-  }
-  @mixin justify-content($value: flex-start) { // flex-start | flex-end | center | space-between | space-around 
-    $msCompatibilityValue: map-get((
-      flex-start  : start,
-      flex-end    : end,
-      space-between  : justify,
-      space-around  : distribute,
-    ), $value);
-    @if $msCompatibilityValue == null{
-      $msCompatibilityValue : $value;
-    }
-    
-    -ms-flex-pack: $msCompatibilityValue; 
-    -webkit-justify-content: $value;
-    justify-content: $value;
-  }
-  @mixin align-content($value: stretch) { // flex-start | flex-end | center | space-between | space-around | stretch 
-    $msCompatibilityValue: map-get((
-      flex-start  : start,
-      flex-end    : end,
-    ), $value);
-    @if $msCompatibilityValue == null{
-      $msCompatibilityValue : $value;
-    }
-    -webkit-align-content: $value;
-    -ms-flex-line-pack: $msCompatibilityValue;
-    align-content: $value;
-  }
-  @mixin align-items($value: stretch) { // flex-start | flex-end | center | baseline | stretch 
-    $msCompatibilityValue: map-get((
-      flex-start  : start,
-      flex-end    : end,
-    ), $value);
-    @if $msCompatibilityValue == null{
-      $msCompatibilityValue : $value;
-    }
-    -webkit-align-items: $value;
-    -ms-flex-align: $msCompatibilityValue;
-    align-items: $value;
-  }
-  @mixin align-self($value: auto) { // auto | flex-start | flex-end | center | baseline | stretch 
-    $msCompatibilityValue: map-get((
-      flex-start  : start,
-      flex-end    : end,
-    ), $value);
-    @if $msCompatibilityValue == null{
-      $msCompatibilityValue : $value;
-    }
-    
-    -webkit-align-self: $value;
-    -ms-flex-item-align: $msCompatibilityValue;
-    align-self: $value;
-  }
+  
+  -webkit-align-self: $value;
+  -ms-flex-item-align: $msCompatibilityValue;
+  align-self: $value;
+}
+
+
+// margin/padding block and inline "polyfill" for better support
+  // see at : https://caniuse.com/?search=margin-block
+@mixin padding-inline($value) {
+  padding-right: $value;
+  padding-left: $value;
+}
+@mixin margin-inline($value) {
+  margin-right: $value;
+  margin-left: $value;
+}
+@mixin padding-block($value) {
+  padding-top: $value;
+  padding-bottom: $value;
+}
+@mixin margin-block($value) {
+  margin-top: $value;
+  margin-bottom: $value;
+}
