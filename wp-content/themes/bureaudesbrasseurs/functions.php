@@ -149,14 +149,21 @@ function bureaudesbrasseurs_scripts() {
 	wp_enqueue_style( 'bureaudesbrasseurs-styleNormalize', $cssFolder.'/normalize.css' );
 	wp_enqueue_style( 'bureaudesbrasseurs-styleGlobal', $cssFolder.'/global.css' );
 	is_front_page() ?
-		wp_enqueue_style( 'bureaudesbrasseurs-styleHome', $cssFolder.'/frontpage.css' ) : 			/*  accueil 	*/
-		wp_enqueue_style( 'bureaudesbrasseurs-styleOtherPages', $cssFolder.'/otherpages.css' );	/* autre pages 	*/
+		wp_enqueue_style( 'bureaudesbrasseurs-styleHome', $cssFolder.'/frontpage.css' ) : 			/*	accueil	*/
+		wp_enqueue_style( 'bureaudesbrasseurs-styleOtherPages', $cssFolder.'/otherpages.css' );		/*	autre pages	*/
 	
 
 	$jsFolder = get_template_directory_uri()."/js";
+	$jsPluginFolder = $jsFolder."/plugins";
 
 	wp_enqueue_script( 'bureaudesbrasseurs-jsMain', $jsFolder.'/main.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'bureaudesbrasseurs-jsNavigation', $jsFolder.'/navigation.js', array(), _S_VERSION, true );
+
+	// swiper.js
+	if(is_page(16 /* trombinoscope */) ){
+		wp_enqueue_script( 'bureaudesbrasseurs-jsSwiperjs', $jsPluginFolder.'/swiperjs/swiper-bundle.min.js', array(), _S_VERSION, true );
+		wp_enqueue_style( 'bureaudesbrasseurs-styleSwiperjs', $jsPluginFolder.'/swiperjs/swiper-bundle.min.css' );
+	}
 
 	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 	// 	wp_enqueue_script( 'comment-reply' );

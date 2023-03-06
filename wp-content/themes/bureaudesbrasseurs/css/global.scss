@@ -63,6 +63,7 @@ nav.main-navigation{
 
     position: fixed;
     top: 0;
+    z-index: 99;
 
     .nav-link{
         position: relative;
@@ -230,18 +231,71 @@ nav.main-navigation{
 }
 
 .bubbleAndText{
-    @include custom-flexbox(row wrap, center, center, center);
+    @include custom-flexbox(row wrap, space-between, flex-end, center);
+    gap: 50px;
 
     > * {
         @include flex(1);
     }
 
     .bubbles{
+        max-width: 500px;
+
         .bubble{
-            width: v(bubbleWidth);
-            height: v(bubbleHeight);
-            background-color: red;
-            border: black 1px solid;
+            position: relative;
+            $bubbleMargin: 50px;
+            margin: $bubbleMargin;
+            margin-right: auto;
+
+            &:nth-of-type(2n){
+                margin-left: auto;
+                margin-right: $bubbleMargin;
+            }
+
+            &, &::before{
+                width: v(bubbleWidth);
+                height: v(bubbleHeight);
+                background: v(bubbleBackgroundURL) no-repeat center center;
+                background-size: contain;
+                border-radius: 50%;
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                z-index: -1;
+                filter: blur(8px);
+            }
+
+            
+            .bubbleName{
+                position: absolute;
+                right: 5%;
+                bottom: 5%;
+                font-family: v(font1);
+                color: v(secondaryColor);
+                z-index: 0;
+                transform-origin: bottom right;
+                transform: scale(0);
+                transition: transform .3s;
+
+                &::before{
+                    content: "";
+                    width: 125%;
+                    aspect-ratio: 1/1;
+                    position: absolute;
+                    top: 50%; left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: -1;
+                    background: v(primaryColor);
+                    border-radius: 50%;
+                }
+            }
+
+            &:hover .bubbleName{
+                transform: scale(1);
+            }
         }
     }
 

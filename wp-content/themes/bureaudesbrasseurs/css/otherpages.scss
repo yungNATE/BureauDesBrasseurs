@@ -30,7 +30,24 @@
 }
 
 
+
+
 // Page Trombinoscope
 .page-template-template-trombinoscope{
+
+    .spacer{
+        background: v(background);
+        background-attachment: fixed;
+        background-size: 100% auto;
+
+        box-shadow: 
+        inset 0px 11px 8px -10px v(primaryColor),
+        inset 0px -11px 8px -10px v(primaryColor); 
+
+
+
+        @include margin-block(150px);
+        height: 400px;
+    }
 
 }
