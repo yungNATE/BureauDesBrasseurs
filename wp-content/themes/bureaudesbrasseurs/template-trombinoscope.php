@@ -42,15 +42,28 @@ get_header();
 
 
     <?php // TODO : Continuer les swipers page trombinoscope ?>
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-        </div>
+    <div class="equipes">
+        <div class="circle-img-text-swiper">
+            <div class="text text-with-circle">
+                <h2>La team DD</h2>
+                <p> La team des écolos bobo !
+                    (tout le monde les déteste, mais on supporte)
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+                    Cette équipe te permet, entre autre, de boire ta bière l’esprit tranquille d’avoir sauvé des petits phoques. 
+                    Nos bières combattent activement le réchauffement de l’œsophage et de la planète !
+                </p>
+            </div>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                </div>
+        
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
     </div>
 
 </main>

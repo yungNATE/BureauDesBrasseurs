@@ -37,7 +37,7 @@ h1, h2{
     color: v(secondaryColor);
 }
 
-// Custom Elements
+// Customized Elements
 section{
     @include margin-inline(auto);
     @include padding-inline(50px);
@@ -299,35 +299,39 @@ nav.main-navigation{
         }
     }
 
-    .text{
-        margin-top: 50px;
-        font-weight: bold;
-        max-width: 500px;
-        position: relative;
+}
 
-        &::before,
-        &::after{
-            content: "";
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -30%);
-            position: absolute;
-            z-index: -1;
+.text-with-circle{
+    margin-top: 50px;
+    font-weight: bold;
+    max-width: 500px;
+    position: relative;
 
-            display: block;
-            width: 100%;
-            aspect-ratio: 1/1;
+    &::before,
+    &::after{
+        content: "";
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -30%);
+        position: absolute;
+        z-index: -1;
 
-            background-color: #231C59;
-            border-radius: 50%;
-        }
+        display: block;
+        width: 100%;
+        aspect-ratio: 1/1;
 
-        &::before{
-            filter: blur(15px);
-        }
+        background-color: #231C59;
+        border-radius: 50%;
+    }
+
+    &::before{
+        filter: blur(15px);
     }
 }
 
+.circle-img-text-swiper{
+    margin-left: 150px;
+}
 
 // Animations
 @keyframes notificationBounce{

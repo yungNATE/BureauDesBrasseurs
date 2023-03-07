@@ -36,7 +36,7 @@
         <?php endfor; ?>
 
     </div>
-    <div class="text">
+    <div class="text text-with-circle">
         <h2><?= $title ?></h2>
         <p><?= $text ?></p>
     </div>
