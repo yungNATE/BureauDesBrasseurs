@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  nginx:    
+    build: ./docker/nginx/
+    ports:  
+      - 80:80  
+    links:  
+      - php  
+    volumes_from:  
+      - app-data  
+
+  php:    
+    build: ./docker/php/
+    expose:  
+      - 9000  
+    links:  
+      - db  
+    volumes_from:  
+      - app-data  
+
+  app-data:    
+    image: php:8.1-fpm  
+    volumes:  
+      - .:/var/www/html/
+    command: "true"  
+
+  db:    
+    image: mariadb 
+    volumes_from:  
+      - db-data  
+    environment:  
+      MYSQL_ROOT_PASSWORD: secret  
+      MYSQL_DATABASE: bdb  
+      MYSQL_USER: bdb  
+      MYSQL_PASSWORD: password  
+
+  db-data:    
+    image: mariadb
+    volumes:  
+      - /var/lib/mysql  
+    command: "true" 
