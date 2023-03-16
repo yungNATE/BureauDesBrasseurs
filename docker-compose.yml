@@ -27,6 +27,8 @@ services:
 
   db:    
     image: mariadb 
+    ports:
+      - 3306:3306
     volumes_from:  
       - db-data  
     environment:  
@@ -34,9 +36,13 @@ services:
       MYSQL_DATABASE: bdb  
       MYSQL_USER: bdb  
       MYSQL_PASSWORD: password  
+      MAX_ALLOWED_PACKET: 1073741824
+    volumes:
+      - ./docker/db/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./docker/db/01-init-sql-script.sql:/tmp/sql/01-init-sql-script.sql
 
   db-data:    
     image: mariadb
     volumes:  
-      - /var/lib/mysql  
+      - /var/lib/mysql
     command: "true" 
